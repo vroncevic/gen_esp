@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# @brief    Database manager 
+# @brief    
 # @version  ver.1.0
 # @date     Wed Aug 17 11:13:57 CEST 2016
 # @company  Frobas IT Department, www.frobas.com 2016
@@ -26,7 +26,7 @@ my $log = dirname(dirname(abs_path($0))) . "/log/genesp.log";
 our $TOOL_DBG="false"; 
 
 #
-# @brief   Operations with user/department database
+# @brief   
 # @param   Value required hash argument structure
 # @exitval Function genesp exit with integer value
 #			0   - success operation 
@@ -48,11 +48,6 @@ sub genesp {
 		$opt{PREFERENCES} = \%preferences;
 		#genproroot(\%opt);
 		#genprostructure(\%opt);
-		use SetSpiSpeed qw(setspispeed);
-		my $option;
-		if(setspispeed(\%opt, \$option) == $NOT_SUCCESS) {
-			return ($NOT_SUCCESS);
-		}
 		print("### $option\n");
 		exit(0);
 	}
@@ -106,7 +101,7 @@ __END__
 
 =head1 NAME
 
-genesp - operations with user/department database
+genesp - 
 
 =head1 SYNOPSIS
 
@@ -118,76 +113,17 @@ Use:
 
 Examples:
 
-    # Add operation examples
-    genesp --add department --name IT -udid 1000
-    genesp --add user --fname "Vladimir Roncevic" --name vroncevic -udid 10001
-    genesp --add user2group --fname IT --name vroncevic
-    
-    # Delete operation examples
-    genesp --del user --name vroncevic
-    genesp --del department --name IT
-    
-    # List operation examples
-    genesp --list users
-    genesp --list departments
-    genesp --list all
-    
-    # Print this option
-    genesp --help
 
-    # Print code of tool
-    genesp --manual
-    
-    # Return values
-    0   - success operation 
-    127 - run as root user
-    128 - wrong arguments of ADD USER operation
-    129 - wrong arguments of ADD DEPARTMENT operation
-    130 - wrong arguments of ADD USER2GROUP operation
-    131 - wrong arguments of ADD operation
-    132 - wrong arguments of DEL USER operation
-    133 - wrong arguments of DEL DEPARTMENT operation
-    134 - wrong arguments of DEL operation
-    135 - wrong arguments of LIST operation
-    136 - wrong first argument of tool
-    137 - failed to load configuration from config file
-    138 - failed to add new user
-    139 - failed to add new department
-    140 - failed to add user to department
-    141 - failed to delete user
-    142 - failed to delete department
-    143 - failed to list users
-    144 - failed to list departments
-    145 - failed to list all
-    146 - failed to parse first argument
 
 =head1 DESCRIPTION
 
-This script is for operations with user/department database.
+
 
 =head1 ARGUMENTS
 
 genesp takes the following arguments:
 
-=over 4
-
-=item add
-
-    add
-  
-    (Optional.) Add new user/department to database
-
-=item del
-
-    del
-  
-    (Optional.) Delete user/department from database
-
-=item list
-
-    list
-  
-    (Optional.) List users/departments/all from database
+=over 2
 
 =item help
 
