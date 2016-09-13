@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<espModule>
+  <firmware name="spi_speed_0">
+	  <option>0</option>
+	  <speed>20</speed>
+  </firmware>
+  <firmware name="spi_speed_1">
+	  <option>1</option>
+	  <speed>26.7</speed>
+  </firmware>
+  <firmware name="spi_speed_2">
+	  <option>2</option>
+	  <speed>40</speed>
+  </firmware>
+  <firmware name="spi_speed_3">
+	  <option>3</option>
+	  <speed>80</speed>
+  </firmware>
+</espModule>  

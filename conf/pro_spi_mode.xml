@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<espModule>
+  <firmware name="spi_mode_0">
+	  <option>0</option>
+	  <mode>QIO</mode>
+  </firmware>
+  <firmware name="spi_mode_1">
+	  <option>1</option>
+	  <mode>QOUT</mode>
+  </firmware>
+  <firmware name="spi_mode_2">
+	  <option>2</option>
+	  <mode>DIO</mode>
+  </firmware>
+  <firmware name="spi_mode_3">
+	  <option>3</option>
+	  <mode>DOUT</mode>
+  </firmware>
+</espModule>  

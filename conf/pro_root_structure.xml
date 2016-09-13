@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<espModule>
+  <firmware>
+    <bootVersion>BOOT=</bootVersion>
+    <bootMode>APP=</bootMode>
+    <spiSpeed>SPI_SPEED=</spiSpeed>
+    <spiMode>SPI_MODE=</spiMode>
+    <spiSizeMap>SPI_SIZE_MAP=</spiSizeMap>
+  </firmware>
+</espModule> 

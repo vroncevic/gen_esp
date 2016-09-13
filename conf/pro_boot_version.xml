@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<espModule>
+  <firmware name="boot_v1.1">
+	  <option>0</option>
+	  <version>old</version>
+  </firmware>
+  <firmware name="boot_v1.2+">
+	  <option>1</option>
+	  <version>new</version>
+  </firmware>
+  <firmware name="none">
+	  <option>2</option>
+	  <version>none</version>
+  </firmware>
+</espModule>  

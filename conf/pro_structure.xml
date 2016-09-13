@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+  <structure>
+    <deployDir>bin</deployDir>
+    <headerDir>include</headerDir>
+    <linkerDir>ld</linkerDir>
+    <libraryDir>lib</libraryDir>
+	<sourceDir>src</sourceDir>
+  </structure>
+</project> 

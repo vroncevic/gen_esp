@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<espModule>
+  <firmware name="spi_size_0">
+	  <option>0</option>
+	  <size>512KB(256KB+256KB)</size>
+  </firmware>
+  <firmware name="spi_size_1">
+	  <option>2</option>
+	  <size>1024KB(512KB+512KB)</size>
+  </firmware>
+  <firmware name="spi_size_2">
+	  <option>3</option>
+	  <size>2048KB(512KB+512KB)</size>
+  </firmware>
+  <firmware name="spi_size_3">
+	  <option>4</option>
+	  <size>4096KB(512KB+512KB)</size>
+  </firmware>
+  <firmware name="spi_size_4">
+	  <option>5</option>
+	  <size>2048KB(1024KB+1024KB)</size>
+  </firmware>
+  <firmware name="spi_size_5">
+	  <option>6</option>
+	  <size>4096KB(1024KB+1024KB)</size>
+  </firmware>
+</espModule>
