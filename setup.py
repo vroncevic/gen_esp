@@ -114,7 +114,7 @@ setup(
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
     packages=[
-        'gen_esp', 'gen_esp.pro', 'gen_esp.pro.config'
+        'gen_esp', 'gen_esp.pro'
     ],
     install_requires=['ats-utilities'],
     package_data={
