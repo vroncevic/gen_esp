@@ -14,7 +14,6 @@ other information that should be provided before the modules are installed.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [Installation](#installation)
@@ -26,6 +25,7 @@ other information that should be provided before the modules are installed.
 - [Generation flow of py module](#generation-flow-of-py-module)
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
+- [Contributing](#contributing)
 - [Copyright and Licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
