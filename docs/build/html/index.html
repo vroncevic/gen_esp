@@ -1,18 +1,19 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>Welcome to gen_esp’s documentation! &#8212; gen_esp https://github.com/vroncevic/gen_esp/releases/ documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Generate ESP Project &#8212; gen_esp https://github.com/vroncevic/gen_esp/releases/ documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -31,19 +32,118 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-gen-esp-s-documentation">
-<h1>Welcome to gen_esp’s documentation!<a class="headerlink" href="#welcome-to-gen-esp-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="generate-esp-project">
+<h1>Generate ESP Project<a class="headerlink" href="#generate-esp-project" title="Permalink to this headline">¶</a></h1>
+<p><strong>gen_esp</strong> is tool for generation of esp project.</p>
+<p>Developed in <a class="reference external" href="https://www.python.org/">python</a> code.</p>
+<p>The README is used to introduce the tool and provide instructions on
+how to install the tool, any machine dependencies it may have and any
+other information that should be provided before the tool is installed.</p>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_package.yml"><img alt="Python package" src="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_package.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_esp/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/gen_esp.svg" /></a> <a class="reference external" href="https://gen_esp.readthedocs.io/projects/gen_esp/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/gen_esp/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_esp/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/gen_esp.svg" /></a></p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generate ESP Project</a></li>
+</ul>
 </div>
-</section>
-<section id="indices-and-tables">
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python2_publish.yml/badge.svg?branch=master"><img alt="Install Python2 Package" src="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python2_publish.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_publish.yml/badge.svg?branch=master"><img alt="Install Python3 Package" src="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_publish.yml/badge.svg" /></a></p>
+<p><img alt="Debian Linux OS" src="https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/debtux.png" /></p>
+<p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/gen_esp/releases">page</a> download and extract release archive.</p>
+<p>To install <strong>gen_esp</strong> type the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf gen_esp-x.y.z.tar.gz
+<span class="nb">cd</span> gen_esp-x.y.z/
+<span class="c1"># python2</span>
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python2 get-pip.py
+python2 -m pip install --upgrade setuptools
+python2 -m pip install --upgrade pip
+python2 -m pip install --upgrade build
+pip2 install -r requirements.txt
+python2 -m build --no-isolation --wheel
+pip2 install ./dist/gen_esp-*-py2-none-any.whl
+rm -f get-pip.py
+chmod <span class="m">755</span> /usr/local/lib/python2.7/dist-packages/usr/local/bin/gen_esp_run.py
+ln -s /usr/local/lib/python2.7/dist-packages/usr/local/bin/gen_esp_run.py /usr/local/bin/gen_esp_run.py
+<span class="c1"># python3</span>
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade build
+pip3 install -r requirements.txt
+python3 -m build --no-isolation --wheel
+pip3 install ./dist/gen_esp-*-py3-none-any.whl
+rm -f get-pip.py
+chmod <span class="m">755</span> /usr/local/lib/python3.9/dist-packages/usr/local/bin/gen_esp_run.py
+ln -s /usr/local/lib/python3.9/dist-packages/usr/local/bin/gen_esp_run.py /usr/local/bin/gen_esp_run.py
+</pre></div>
+</div>
+<p>You can use Docker to create image/container, or You can use pip to install</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyton2</span>
+pip2 install gen_esp
+<span class="c1"># pyton3</span>
+pip3 install gen_esp
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_docker_checker.yml"><img alt="GitHub docker checker" src="https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_docker_checker.yml/badge.svg" /></a></p>
+</div>
+<div class="section" id="dependencies">
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<p><strong>gen_esp</strong> requires next modules and libraries</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.org/project/ats-utilities/">ats-utilities - Python App/Tool/Script Utilities</a></li>
+</ul>
+</div>
+<div class="section" id="generation-flow-of-project-setup">
+<h1>Generation flow of project setup<a class="headerlink" href="#generation-flow-of-project-setup" title="Permalink to this headline">¶</a></h1>
+<p>Base flow of generation process</p>
+<img alt="https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/python_setup_flow.png" src="https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/python_setup_flow.png" />
+</div>
+<div class="section" id="tool-structure">
+<h1>Tool structure<a class="headerlink" href="#tool-structure" title="Permalink to this headline">¶</a></h1>
+<p><strong>gen_esp</strong> is based on OOP.</p>
+<p>Tool structure</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gen_esp/
+├── conf/
+│   ├── gen_esp.cfg
+│   ├── gen_esp.logo
+│   ├── gen_esp_util.cfg
+│   └── template/
+│       └── generator_test.template
+├── __init__.py
+├── log/
+│   └── gen_esp.log
+├── pro/
+│   ├── __init__.py
+│   ├── read_template.py
+│   └── write_template.py
+└── run/
+    └── gen_esp_run.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="copyright-and-licence">
+<h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
+<p>Copyright (C) 2021 by <a class="reference external" href="https://vroncevic.github.io/gen_esp">vroncevic.github.io/gen_esp</a></p>
+<p><strong>gen_esp</strong> is free software; you can redistribute it and/or modify
+it under the same terms as Python itself, either Python version 2.x/3.x or,
+at your option, any later version of Python 3 you may have available.</p>
+<p>Lets help and support PSF.</p>
+<p><a class="reference external" href="https://www.python.org/psf/"><img alt="Python Software Foundation" src="https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/psf-logo-alpha.png" /></a></p>
+<p><a class="reference external" href="https://psfmember.org/index.php?q=civicrm/contribute/transact&amp;reset=1&amp;id=2"><img alt="Donate" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></p>
+</div>
+<div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
-</section>
+</div>
 
 
           </div>
@@ -62,6 +162,10 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generate ESP Project</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
@@ -71,15 +175,17 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -96,7 +202,7 @@
       &copy;2016, Vladimir Roncevic <elektron.ronca@gmail.com>.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
