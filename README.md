@@ -156,7 +156,7 @@ gen_esp/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/gen_esp/badge/?version=latest)](https://gen_esp.readthedocs.io/en/latest/?badge=latest)
+[![documentation status](https://readthedocs.org/projects/gen_esp/badge/?version=latest)](https://gen_esp.readthedocs.io/en/latest/?badge=latest)
  [![pages-build-deployment](https://github.com/vroncevic/gen_esp/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/gen_esp/actions/workflows/pages/pages-build-deployment)
 
 📗 More documentation and info at
