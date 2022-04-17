@@ -1,14 +1,14 @@
-name: Triage gen_esp label
+name: gen_esp triage label
 on:
   issues:
     types: [opened]
 jobs:
   applyTriageLabel:
-    name: Apply Triage Label
+    name: gen_esp triage label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Apply Triage Label
+      - name: gen_esp triage label
         uses: actions/github@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

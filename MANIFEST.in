@@ -1,2 +1,12 @@
 global-exclude *.py[cod]
 global-exclude *.editorconfig
+include gen_esp/conf/gen_esp.cfg
+include gen_esp/conf/gen_esp.logo
+include gen_esp/conf/gen_esp_util.cfg
+include gen_esp/conf/template/generator_test.template
+include gen_esp/__init__.py
+include gen_esp/log/gen_esp.log
+include gen_esp/pro/__init__.py
+include gen_esp/pro/read_template.py
+include gen_esp/pro/write_template.py
+include gen_esp/run/gen_esp_run.py
