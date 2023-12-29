@@ -9,40 +9,37 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|gen_esp python checker| |gen_esp python package| |github issues| |documentation status| |github contributors|
 
-.. |Python package| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_package.yml/badge.svg
+.. |gen_esp python checker| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python_checker.yml
+
+.. |gen_esp python package| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_package_checker.yml/badge.svg
    :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_package.yml
 
-.. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/gen_esp.svg
+.. |github issues| image:: https://img.shields.io/github/issues/vroncevic/gen_esp.svg
    :target: https://github.com/vroncevic/gen_esp/issues
 
-.. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/gen_esp.svg
+.. |github contributors| image:: https://img.shields.io/github/contributors/vroncevic/gen_esp.svg
    :target: https://github.com/vroncevic/gen_esp/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/gen_esp/badge/?version=latest
-   :target: https://gen_esp.readthedocs.io/projects/gen_esp/en/latest/?badge=latest
+.. |documentation status| image:: https://readthedocs.org/projects/gen-esp/badge/?version=latest
+   :target: https://gen-esp.readthedocs.io/en/latest/?badge=latest
 
 .. toctree::
    :maxdepth: 4
    :caption: Contents
 
    self
+   modules
 
 Installation
 -------------
 
-|Install Python2 Package| |Install Python3 Package|
+|gen_esp python3 build|
 
-.. |Install Python2 Package| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python2_publish.yml/badge.svg
-   :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python2_publish.yml/badge.svg?branch=master
-
-.. |Install Python3 Package| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_publish.yml/badge.svg
-   :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_publish.yml/badge.svg?branch=master
-
-|Debian Linux OS|
-
-.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/debtux.png
+.. |gen_esp python3 build| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_build.yml/badge.svg
+   :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_python3_build.yml
 
 Navigate to release `page`_ download and extract release archive.
 
@@ -54,18 +51,6 @@ To install **gen_esp** type the following
 
     tar xvzf gen_esp-x.y.z.tar.gz
     cd gen_esp-x.y.z/
-    # python2
-    wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-    python2 get-pip.py 
-    python2 -m pip install --upgrade setuptools
-    python2 -m pip install --upgrade pip
-    python2 -m pip install --upgrade build
-    pip2 install -r requirements.txt
-    python2 -m build --no-isolation --wheel
-    pip2 install ./dist/gen_esp-*-py2-none-any.whl
-    rm -f get-pip.py
-    chmod 755 /usr/local/lib/python2.7/dist-packages/usr/local/bin/gen_esp_run.py
-    ln -s /usr/local/lib/python2.7/dist-packages/usr/local/bin/gen_esp_run.py /usr/local/bin/gen_esp_run.py
     # python3
     wget https://bootstrap.pypa.io/get-pip.py
     python3 get-pip.py 
@@ -83,15 +68,8 @@ You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
-    # pyton2
-    pip2 install gen_esp
     # pyton3
     pip3 install gen_esp
-
-|GitHub docker checker|
-
-.. |GitHub docker checker| image:: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_docker_checker.yml/badge.svg
-   :target: https://github.com/vroncevic/gen_esp/actions/workflows/gen_esp_docker_checker.yml
 
 Dependencies
 -------------
@@ -99,13 +77,6 @@ Dependencies
 **gen_esp** requires next modules and libraries
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
-
-Generation flow of project setup
----------------------------------
-
-Base flow of generation process
-
-.. image:: https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/python_setup_flow.png
 
 Tool structure
 ---------------
@@ -117,50 +88,52 @@ Tool structure
 .. code-block:: bash
 
     gen_esp/
-    ├── conf/
-    │   ├── gen_esp.cfg
-    │   ├── gen_esp.logo
-    │   ├── gen_esp_util.cfg
-    │   └── template/
-    │       └── generator_test.template
-    ├── __init__.py
-    ├── log/
-    │   └── gen_esp.log
-    ├── pro/
-    │   ├── __init__.py
-    │   ├── read_template.py
-    │   └── write_template.py
-    └── run/
-        └── gen_esp_run.py
+        ├── conf/
+        │   ├── gen_esp.cfg
+        │   ├── gen_esp.logo
+        │   ├── gen_esp_util.cfg
+        │   └── template/
+        │       └── generator_test.template
+        ├── __init__.py
+        ├── log/
+        │   └── gen_esp.log
+        ├── pro/
+        │   ├── __init__.py
+        │   ├── read_template.py
+        │   └── write_template.py
+        └── run/
+            └── gen_esp_run.py
+        
+        6 directories, 10 files
 
 Copyright and licence
 -----------------------
 
-|License: GPL v3| |License: Apache 2.0|
+|license: gpl v3| |license: apache 2.0|
 
-.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+.. |license: gpl v3| image:: https://img.shields.io/badge/license-gplv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-   :target: https://opensource.org/licenses/Apache-2.0
+.. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/apache-2.0
 
-Copyright (C) 2021 by `vroncevic.github.io/gen_esp <https://vroncevic.github.io/gen_esp>`_
+Copyright (C) 2016 - 2024 by `vroncevic.github.io/gen_esp <https://vroncevic.github.io/gen_esp>`_
 
 **gen_esp** is free software; you can redistribute it and/or modify
-it under the same terms as Python itself, either Python version 2.x/3.x or,
+it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
 
-|Python Software Foundation|
+|python software foundation|
 
-.. |Python Software Foundation| image:: https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/psf-logo-alpha.png
+.. |python software foundation| image:: https://raw.githubusercontent.com/vroncevic/gen_esp/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
-|Donate|
+|donate|
 
-.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
-   :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
+.. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
+   :target: https://www.python.org/psf/donations/
 
 Indices and tables
 ------------------

@@ -1,42 +1,46 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     __init__.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     gen_esp is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     gen_esp is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class GenESPPro with attribute(s) and method(s).
-     Generate module file generator_test.py by template and parameters.
+Module
+    __init__.py
+Copyright
+    Copyright (C) 2016 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    gen_esp is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    gen_esp is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class GenESPPro with attribute(s) and method(s).
+    Generates an ESP project structure.
 '''
 
 import sys
+from typing import List, Dict
+from os.path import dirname, realpath
 
 try:
+    from ats_utilities.config_io.file_check import FileCheck
+    from ats_utilities.console_io.verbose import verbose_message
+    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
+    from ats_utilities.pro_config import ProConfig
+    from ats_utilities.pro_config.pro_name import ProName
     from gen_esp.pro.read_template import ReadTemplate
     from gen_esp.pro.write_template import WriteTemplate
-    from ats_utilities.checker import ATSChecker
-    from ats_utilities.config_io.base_check import FileChecking
-    from ats_utilities.console_io.verbose import verbose_message
-    from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/gen_esp'
-__credits__ = ['Vladimir Roncevic']
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_esp/blob/dev/LICENSE'
 __version__ = '1.1.0'
 __maintainer__ = 'Vladimir Roncevic'
@@ -44,105 +48,99 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenESPPro(FileChecking):
+class GenESPPro(FileCheck, ProConfig, ProName):
     '''
         Defined class GenESPPro with attribute(s) and method(s).
-        Generate module file generator_test.py by template and parameters.
+        Generates an ESP project structure.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
-                | PRO_STRUCTURE - project setup (template, module).
-                | __reader - reader API.
-                | __writer - writer API.
-                | __config - project setup in dict format.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
+                | _PRO_STRUCTURE - Project setup (template, module).
+                | _reader - Reader API.
+                | _writer - Writer API.
             :methods:
-                | __init__ - initial constructor.
-                | get_reader - getter for template reader.
-                | get_writer - getter for template writer.
-                | gen_setup - generate module file setup.py.
-                | __str__ - dunder method for GenESPPro.
+                | __init__ - Initials GenESPPro constructor.
+                | get_reader - Gets template reader.
+                | get_writer - Gets template writer.
+                | gen_project - Generates ESP project structure.
     '''
 
-    GEN_VERBOSE = 'GEN_ESP::PRO::GEN_SETUP'
+    _GEN_VERBOSE: str = 'GEN_AUTOCONF::PRO::GEN_SETUP'
+    _PRO_STRUCTURE: str = '/../conf/project.yaml'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initials GenPro constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        FileChecking.__init__(self, verbose=verbose)
-        verbose_message(GenESPPro.GEN_VERBOSE, verbose, 'init setup')
-        self.__reader = ReadTemplate(verbose=verbose)
-        self.__writer = WriteTemplate(verbose=verbose)
+        FileCheck.__init__(self, verbose)
+        ProConfig.__init__(self, verbose)
+        ProName.__init__(self, verbose)
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} init generator']
+        )
+        self._reader: ReadTemplate | None = ReadTemplate(verbose)
+        self._writer: WriteTemplate | None = WriteTemplate(verbose)
+        current_dir: str = dirname(realpath(__file__))
+        pro_structure: str = f'{current_dir}{self._PRO_STRUCTURE}'
+        self.check_path(pro_structure, verbose)
+        self.check_mode('r', verbose)
+        self.check_format(pro_structure, 'yaml', verbose)
+        if self.is_file_ok():
+            yml2obj: Yaml2Object | None = Yaml2Object(pro_structure)
+            self.config = yml2obj.read_configuration()
 
-    def get_reader(self):
+    def get_reader(self) -> ReadTemplate | None:
         '''
-            Getter for template reader.
+            Gets template reader.
 
-            :return: template reader object.
-            :rtype: <ReadTemplate>
+            :return: Template reader object | None
+            :rtype: <ReadTemplate> | <NoneType>
             :exceptions: None
         '''
-        return self.__reader
+        return self._reader
 
-    def get_writer(self):
+    def get_writer(self) -> WriteTemplate | None:
         '''
-            Getter for template writer.
+            Gets template writer.
 
-            :return: template writer object.
-            :rtype: <WriteTemplate>
+            :return: Template writer object | none
+            :rtype: <WriteTemplate> | <NoneType
             :exceptions: None
         '''
-        return self.__writer
+        return self._writer
 
-    def gen_setup(self, pro_name, verbose=False):
+    def gen_project(self, pro_name: str | None, verbose: bool = False) -> bool:
         '''
-            Generate module generator_test.py.
+            Generates autoconf project structure.
 
-            :param pro_name: project name.
-            :type pro_name: <str>
-            :param verbose: enable/disable verbose option.
+            :param pro_name: Project name | None
+            :type pro_name: <str> | <NoneType>
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
-            :return: boolean status, True (success) | False.
+            :return: True (success operation) | False
             :rtype: <bool>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :exceptions: ATSTypeError | ATSValueError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = self.check_params([
             ('str:pro_name', pro_name)
         ])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        status, setup_content = False, None
-        verbose_message(
-            GenESPPro.GEN_VERBOSE, verbose, 'generating module', pro_name
-        )
-        template_file, module = 'generator_test.template', 'generator_test.py'
-        if bool(template_file):
-            setup_content = self.__reader.read(
-                template_file, verbose=verbose
+        if error_id == self.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        if not bool(pro_name):
+            raise ATSValueError('missing project name')
+        status: bool = False
+        if bool(self.config) and self._reader and self._writer:
+            templates: List[Dict[str, str]] = self._reader.read(
+                self.config, verbose
             )
-            if setup_content:
-                status = self.__writer.write(
-                    setup_content, pro_name, module, verbose=verbose
-                )
+            if bool(templates):
+                status = self._writer.write(templates, pro_name, verbose)
         return status
-
-    def __str__(self):
-        '''
-            Dunder method for GenESPPro.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2}, {3})'.format(
-            self.__class__.__name__, FileChecking.__str__(self),
-            str(self.__reader), str(self.__writer)
-        )
