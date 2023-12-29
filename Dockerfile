@@ -1,4 +1,4 @@
-# Copyright 2016 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2016 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-FROM debian:10
+FROM debian:12
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq --no-install-recommends \
@@ -25,18 +25,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     unzip \
     ca-certificates \
     openssl \
-    python \
-    python-dev \
     python3 \
     python3-dev \
     libyaml-dev
 
-RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-RUN python2 get-pip.py
-RUN python2 -m pip install --upgrade setuptools
-RUN python2 -m pip install --upgrade pip
-RUN python2 -m pip install --upgrade build
-RUN rm -f get-pip.py
 RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python3 get-pip.py
 RUN python3 -m pip install --upgrade setuptools
@@ -44,7 +36,6 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
 RUN rm -f get-pip.py
 COPY requirements.txt /
-RUN pip2 install -r requirements.txt
 RUN pip3 install -r requirements.txt
 RUN rm -f requirements.txt
 RUN mkdir /gen_esp/
@@ -56,9 +47,8 @@ COPY setup.cfg /
 COPY MANIFEST.in /
 COPY pyproject.toml /
 RUN mkdir /tests/
+COPY tests /tests/
 RUN find /gen_esp/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN python2 -m build --no-isolation --wheel
-RUN pip2 install ./dist/gen_esp-*-py2-none-any.whl
 RUN python3 -m build --no-isolation --wheel
 RUN pip3 install ./dist/gen_esp-*-py3-none-any.whl
 RUN rm -rf /gen_esp*
